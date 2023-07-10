@@ -7,9 +7,9 @@
   */
 
   // Replace contact@example.com with your real receiving email address
-  $receiving_email_address = 'contact@example.com';
+  $receiving_email_address = 'admin@matrixellent.com';
 
-  if( file_exists($php_email_form = '../assets/vendor/php-email-form/php-email-form.php' )) {
+  if( file_exists($php_email_form = '../assets/vendor/php-email-form/validate.js' )) {
     include( $php_email_form );
   } else {
     die( 'Unable to load the "PHP Email Form" Library!');
@@ -37,5 +37,10 @@
   $contact->add_message( $_POST['email'], 'Email');
   $contact->add_message( $_POST['message'], 'Message', 10);
 
-  echo $contact->send();
+  $send_result = $contact->send();
+  if ($send_result) {
+    echo 'Message sent successfully!';
+  } else {
+    echo 'Error: ' . $contact->error();
+  }
 ?>
